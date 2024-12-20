@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Request Form</title>
+    <script>
+      function sendToWhatsApp() {
+        const phone = "+97174828474";
+        const fromDate = document.getElementById("fromDate").value;
+        const toDate = document.getElementById("toDate").value;
+        const persons = document.getElementById("persons").value;
+        const rooms = document.getElementById("rooms").value;
+        const hotels = document.getElementById("hotels").value;
+
+        // Create message
+        const message = `Здравствуйте\n\nДайте пожалуйста стоимость за этот запрос:\n\nС ${fromDate} по ${toDate}\n${persons} взрослый(е)\n${rooms} ном\n\nСколько Без завтрака и с завтраком?!\n\n${hotels}\n\nСпасибо.`;
+
+        // Open WhatsApp with pre-filled message
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(
+          message
+        )}`;
+        window.open(url, "_blank");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Hotel Request Form</h1>
+    <form onsubmit="event.preventDefault(); sendToWhatsApp();">
+      <label for="fromDate">From (Дата с):</label>
+      <input type="date" id="fromDate" required /><br /><br />
+
+      <label for="toDate">To (Дата по):</label>
+      <input type="date" id="toDate" required /><br /><br />
+
+      <label for="persons">Number of persons (Количество взрослых):</label>
+      <input type="number" id="persons" min="1" required /><br /><br />
+
+      <label for="rooms">Number of rooms (Количество номеров):</label>
+      <input type="number" id="rooms" min="1" required /><br /><br />
+
+      <label for="hotels">Hotel names (Названия отелей):</label>
+      <textarea id="hotels" required>
+Continental, Radisson Blu Olympiyskiy</textarea
+      ><br /><br />
+
+      <button type="submit">Send Request to WhatsApp</button>
+    </form>
+  </body>
+</html>
